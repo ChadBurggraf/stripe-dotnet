@@ -9,6 +9,20 @@ namespace Stripe
 	{
 		private JsonObject _internalJson;
 
+        public StripeArray()
+            : this(null)
+        {
+        }
+
+        public StripeArray(IDictionary<string, object> model)
+            : base()
+        {
+            if (model != null)
+            {
+                this.SetModel(model);
+            }
+        }
+
 		public bool IsError { get { return _internalJson.HasProperty("error"); } }
 
 		public JsonObject Error { get { return (JsonObject)_internalJson.GetProperty("error"); } }
