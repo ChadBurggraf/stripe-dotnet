@@ -12,12 +12,8 @@ namespace Stripe
         }
 
         public StripeObject(IDictionary<string, object> model)
-            : base()
+            : base(model)
         {
-            if (model != null)
-            {
-                this.SetModel(model);
-            }
         }
 
 		public bool IsError { get { return HasProperty("error"); } }

@@ -12,10 +12,20 @@ namespace Stripe
 		private IDictionary<string, object> _model;
 		private readonly bool _throwErrorOnMissingMethod;
 
-		internal JsonObject()
-		{
-			_throwErrorOnMissingMethod = false;
-		}
+		public JsonObject()
+            : this(null)
+        {
+        }
+
+        public JsonObject(IDictionary<string, object> model)
+        {
+            _throwErrorOnMissingMethod = false;
+
+            if (model != null)
+            {
+                this.SetModel(model);
+            }
+        }
 
 		internal void SetModel(IDictionary<string, object> model)
 		{
