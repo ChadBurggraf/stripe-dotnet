@@ -83,5 +83,23 @@ namespace Stripe.Tests
 			Assert.False(response.IsError);
 			Assert.True(response.Any());
 		}
+
+        [Fact]
+        public void ListCharges_TestDateRange()
+        {
+            var begin = new DateTimeOffset(new DateTime(2013, 1, 1));
+            var end =  new DateTimeOffset(new DateTime(2014, 1, 1));
+            StripeArray response = _client.ListCharges(periodBegin: begin, periodEnd: end);
+            Assert.NotNull(response);
+            Assert.False(response.IsError);
+            Assert.True(response.Any());
+
+            foreach (var obj in response)
+            {
+                var created = long.Parse(obj["created"].ToString()).ToDateTime();
+                Assert.True(created >= begin);
+                Assert.True(created < end);
+            }
+        }
 	}
 }

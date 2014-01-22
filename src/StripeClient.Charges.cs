@@ -110,7 +110,7 @@ namespace Stripe
 			return ExecuteObject(request);
 		}
 
-		public StripeArray ListCharges(string customerId = null, int? count = null, int? offset = null)
+		public StripeArray ListCharges(string customerId = null, int? count = null, int? offset = null, DateTimeOffset? periodBegin = null, DateTimeOffset? periodEnd = null)
 		{
 			var request = new RestRequest();
 			request.Resource = "charges";
@@ -118,6 +118,8 @@ namespace Stripe
 			if (count.HasValue) request.AddParameter("count", count.Value);
 			if (offset.HasValue) request.AddParameter("offset", offset.Value);
 			if (customerId.HasValue()) request.AddParameter("customer", customerId);
+            if (periodBegin.HasValue) request.AddParameter("created[gte]", periodBegin.Value.ToUnixEpoch());
+            if (periodEnd.HasValue) request.AddParameter("created[lt]", periodEnd.Value.ToUnixEpoch());
 
 			return ExecuteArray(request);
 		}
