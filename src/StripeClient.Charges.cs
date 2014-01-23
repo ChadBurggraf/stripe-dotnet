@@ -119,7 +119,7 @@ namespace Stripe
 			if (offset.HasValue) request.AddParameter("offset", offset.Value);
 			if (customerId.HasValue()) request.AddParameter("customer", customerId);
             if (periodBegin.HasValue) request.AddParameter("created[gte]", periodBegin.Value.ToUnixEpoch());
-            if (periodEnd.HasValue) request.AddParameter("created[lt]", periodEnd.Value.ToUnixEpoch());
+            if (periodEnd.HasValue) request.AddParameter("created[lte]", periodEnd.Value.ToUnixEpoch());
 
 			return ExecuteArray(request);
 		}
