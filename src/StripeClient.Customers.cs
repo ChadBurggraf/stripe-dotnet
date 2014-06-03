@@ -38,7 +38,7 @@ namespace Stripe
 			return ExecuteObject(request);
 		}
 
-		public StripeObject UpdateCustomer(string customerId, ICreditCard card = null, string coupon = null, string email = null, string description = null, int? accountBalance = null)
+		public StripeObject UpdateCustomer(string customerId, ICreditCard card = null, string coupon = null, string email = null, string description = null, int? accountBalance = null, string defaultCard = null)
 		{
 			if (card != null) card.Validate();
 
@@ -53,7 +53,8 @@ namespace Stripe
 			if (email.HasValue()) request.AddParameter("email", email);
 			if (description.HasValue()) request.AddParameter("description", description);
             if (accountBalance.HasValue) request.AddParameter("account_balance", accountBalance.Value);
-
+            if (defaultCard.HasValue()) request.AddParameter("default_card", defaultCard);
+            
 			return ExecuteObject(request);
 		}
 
