@@ -26,7 +26,7 @@ namespace Stripe
 			return ExecuteObject(request);
 		}
 
-        public StripeObject CreateCardWithToken(string customerId, string cardToken)
+        public StripeObject CreateCard(string customerId, string cardToken)
         {
             Require.Argument("customerId", customerId);
             Require.Argument("cardToken", cardToken);
