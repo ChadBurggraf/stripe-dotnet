@@ -99,6 +99,7 @@ namespace Stripe
             Require.Argument("invoiceId", invoiceId);
 
             var request = new RestRequest();
+            request.Method = Method.POST;
             request.Resource = "invoices/{invoiceId}/pay";
 
             request.AddUrlSegment("invoiceId", invoiceId);
