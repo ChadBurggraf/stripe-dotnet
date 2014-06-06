@@ -94,6 +94,19 @@ namespace Stripe
 			return ExecuteArray(request);
 		}
 
+        public StripeObject PayInvoice(string invoiceId)
+        {
+            Require.Argument("invoiceId", invoiceId);
+
+            var request = new RestRequest();
+            request.Method = Method.POST;
+            request.Resource = "invoices/{invoiceId}/pay";
+
+            request.AddUrlSegment("invoiceId", invoiceId);
+
+            return ExecuteObject(request);
+        }
+
 		public StripeObject RetreiveInvoice(string invoiceId)
 		{
 			Require.Argument("invoiceId", invoiceId);
