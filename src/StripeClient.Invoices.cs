@@ -20,7 +20,7 @@ namespace Stripe
 			return ExecuteObject(request);
 		}
 
-		public StripeObject CreateInvoiceItem(string customerId, decimal amount, string currency, string description = null)
+		public StripeObject CreateInvoiceItem(string customerId, decimal amount, string currency, string description = null, string invoiceId = null)
 		{
 			Require.Argument("customerId", customerId);
 			Require.Argument("amount", amount);
@@ -34,6 +34,7 @@ namespace Stripe
 			request.AddParameter("amount", Convert.ToInt32(amount * 100));
 			request.AddParameter("currency", currency);
 			if (description.HasValue()) request.AddParameter("description", description);
+            if (invoiceId.HasValue()) request.AddParameter("invoice", invoiceId);
 
 			return ExecuteObject(request);
 		}
