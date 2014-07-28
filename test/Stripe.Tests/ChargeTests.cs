@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -50,6 +51,27 @@ namespace Stripe.Tests
 			Assert.False(response.IsError);
 			Assert.True(response.Paid);
 		}
+
+        [Fact]
+        public void CreateCharge_Customer_Test_With_Metadata()
+        {
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            metadata.Add("guid", Guid.NewGuid());
+            metadata.Add("date", DateTime.UtcNow);
+            metadata.Add("string", "stripe");
+            metadata.Add("double", 2.0);
+            metadata.Add("bool", false);
+
+            dynamic response = _client.CreateCharge(100M, "usd", _customer.Id, null, metadata);
+
+            Assert.NotNull(response);
+            Assert.False(response.IsError);
+            Assert.True(response.Paid);
+
+            JsonObject meta = response.Metadata as JsonObject;
+            Assert.NotNull(meta);
+            Assert.Equal(5, meta.Count());
+        }
 
 		[Fact]
 		public void RetrieveCharge_Test()

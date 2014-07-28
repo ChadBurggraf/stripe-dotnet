@@ -1,4 +1,5 @@
 ﻿﻿using System;
+using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
@@ -35,7 +36,7 @@ namespace Stripe
             return ExecuteObject(request);
         }
         
-        public StripeObject CreateCharge(decimal amount, string currency, string customerId, string description = null)
+        public StripeObject CreateCharge(decimal amount, string currency, string customerId, string description = null, IDictionary<string, object> metadata = null)
 		{
 			Require.Argument("amount", amount);
 			Require.Argument("currency", currency);
@@ -52,6 +53,8 @@ namespace Stripe
 			request.AddParameter("currency", currency);
 			request.AddParameter("customer", customerId);
 			if (description.HasValue()) request.AddParameter("description", description);
+
+            request.WithMetadata(metadata);
 
 			return ExecuteObject(request);
 		}
