@@ -30,7 +30,7 @@ namespace Stripe
 			_client = new RestClient();
 			_client.UserAgent = "stripe-dotnet/" + version;
 			_client.Authenticator = new StripeAuthenticator(apiKey);
-			_client.BaseUrl = String.Format("{0}{1}", ApiEndpoint, ApiVersion);
+            _client.BaseUrl = new Uri(String.Format("{0}{1}", ApiEndpoint, ApiVersion));
 		}
 
 		/// <summary>
