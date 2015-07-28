@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Stripe.nuspec">
+    <None Include="Stripe.nuspec.exclude">
       <SubType>Designer</SubType>
     </None>
     <Compile Include="StripeClient.Refunds.cs" />
