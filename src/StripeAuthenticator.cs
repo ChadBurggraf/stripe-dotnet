@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
-using RestSharp;
 using System.Net;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace Stripe
 {
