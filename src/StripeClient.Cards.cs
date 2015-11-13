@@ -104,7 +104,7 @@ namespace Stripe
 
             var request = new RestRequest();
             request.Method = Method.POST;
-            request.Resource = "customers/{{customerId}}/cards";
+            request.Resource = "customers/{customerId}/cards";
 
             request.AddUrlSegment("customerId", customerId);
             request.AddParameter("card", cardToken);
